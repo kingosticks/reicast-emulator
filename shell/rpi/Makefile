@@ -1,15 +1,14 @@
 
 LOCAL_PATH := $(call my-dir)
 FOR_LINUX :=1
-FOR_ARM :=1
 FOR_RPI :=1
+WEBUI :=1
 
 RZDCY_SRC_DIR = ../../core
 
 include $(RZDCY_SRC_DIR)/core.mk
 
 #CC_PREFIX ?= arm-none-linux-gnueabi-
-CC_PREFIX ?=
 
 CXX=${CC_PREFIX}g++-4.8
 CC=${CC_PREFIX}gcc-4.8
@@ -20,9 +19,8 @@ LD=${CC}
 
 #-mcpu=cortex-a7 -mfpu=neon-vfpv4 -mfloat-abi=hard
 
-#MFLAGS := -marm -march=armv7-a -mtune=cortex-a7 -mfpu=neon-vfpv4 -mfloat-abi=hard -funroll-loops
-MFLAGS := -marm -march=armv7-a -mtune=cortex-a7 -mfpu=neon -mfloat-abi=softfp -funroll-loops
-ASFLAGS := -march=armv7-a -mfpu=neon -mfloat-abi=softfp
+MFLAGS := -marm -march=armv7-a -mtune=cortex-a7 -mfpu=neon-vfpv4 -mfloat-abi=hard -funroll-loops
+ASFLAGS := -march=armv7-a -mfpu=neon-vfpv4 -mfloat-abi=hard
 
 LDFLAGS	:=	-g -Wl,-Map,$(notdir $@).map,--gc-sections -Wl,-O3 -Wl,--sort-common 
 
@@ -31,14 +29,13 @@ SOURCES	:=	cfg/ hw/arm7/ hw/aica/ hw/asic/ hw/ hw/gdrom/ hw/maple/ \
  hw/extdev/ hw/arm/ imgread/ linux/ linux-dist/ ./ rec-ARM/ deps/zlib/ deps/chdr/ deps/crypto/ arm_emitter/ 
 
 
-CXXFLAGS := -std=gnu++11 -g -O3  -D RELEASE -c -D TARGET_RPI  
+CXXFLAGS := -std=gnu++11 -g -O3  -D RELEASE -c -D TARGET_RPI -D TARGET_LINUX_ARMELv7  
 CXXFLAGS += -frename-registers -fno-strict-aliasing -fsingle-precision-constant 
 CXXFLAGS += -ffast-math -ftree-vectorize -fprefetch-loop-arrays 
 #-std=c++0x
 
 CXXFLAGS += $(CFLAGS) $(MFLAGS) -fno-exceptions -fno-rtti
-CXXFLAGS += -D SUPPORT_X11
-CXXFLAGS += -D GLES
+CXXFLAGS += -D SUPPORT_X11 -D ARM_HARDFP -D GLES
 
 ifdef PGO_MAKE
 	CXXFLAGS += -fprofile-generate -pg

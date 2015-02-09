@@ -67,7 +67,7 @@ RZDCY_CFLAGS	:= \
 	-DRELEASE \
 	-frename-registers -fsingle-precision-constant -ffast-math \
 	-ftree-vectorize -fomit-frame-pointer
-	RZDCY_CFLAGS += -march=armv7-a -mtune=cortex-a7 -mfpu=neon
+	RZDCY_CFLAGS += -march=armv7-a -mtune=cortex-a7 -mfpu=neon-vfpv4
 	RZDCY_CFLAGS += -DTARGET_LINUX_ARMELv7
 else
 RZDCY_CFLAGS	:= \
