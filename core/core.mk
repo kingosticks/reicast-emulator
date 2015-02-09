@@ -61,6 +61,15 @@ RZDCY_CFLAGS	:= \
 	RZDCY_CFLAGS += -march=armv7-a -mtune=cortex-a8 -mfpu=neon
 	RZDCY_CFLAGS += -DTARGET_LINUX_ARMELv7
 else
+ifdef FOR_RPI
+RZDCY_CFLAGS	:= \
+	$(CFLAGS) -c -g -O3 -I$(RZDCY_SRC_DIR) -I$(RZDCY_SRC_DIR)/deps \
+	-DRELEASE \
+	-frename-registers -fsingle-precision-constant -ffast-math \
+	-ftree-vectorize -fomit-frame-pointer
+	RZDCY_CFLAGS += -march=armv7-a -mtune=cortex-a7 -mfpu=neon
+	RZDCY_CFLAGS += -DTARGET_LINUX_ARMELv7
+else
 RZDCY_CFLAGS	:= \
 	$(CFLAGS) -c -g -O3 -I$(RZDCY_SRC_DIR) -I$(RZDCY_SRC_DIR)/deps \
 	-D_ANDROID -DRELEASE\
@@ -77,6 +86,7 @@ RZDCY_CFLAGS	:= \
       RZDCY_CFLAGS += -DTARGET_LINUX_MIPS
 		endif
 	endif
+endif
 endif
 
 ifdef NO_REC

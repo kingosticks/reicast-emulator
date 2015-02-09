@@ -62,6 +62,9 @@
 #elif TARGET_PANDORA
 	#define HOST_OS OS_LINUX
 	#define HOST_CPU CPU_ARM
+#elif TARGET_RPI
+	#define HOST_OS OS_LINUX
+	#define HOST_CPU CPU_ARM
 #elif TARGET_LINUX_ARMELv7
 	#define HOST_OS OS_LINUX
 	#define HOST_CPU CPU_ARM
