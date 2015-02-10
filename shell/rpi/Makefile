@@ -28,8 +28,8 @@ SOURCES	:=	cfg/ hw/arm7/ hw/aica/ hw/asic/ hw/ hw/gdrom/ hw/maple/ \
  hw/mem/ hw/pvr/ hw/sh4/ hw/sh4/rec_v2/ plugins/ profiler/ serial_ipc/ \
  hw/extdev/ hw/arm/ imgread/ linux/ linux-dist/ ./ rec-ARM/ deps/zlib/ deps/chdr/ deps/crypto/ arm_emitter/ 
 
-
-CXXFLAGS := -std=gnu++11 -g -O3  -D RELEASE -c -D TARGET_RPI -D TARGET_LINUX_ARMELv7  
+#-std=gnu++11
+CXXFLAGS := -g -O3  -D RELEASE -c -D TARGET_RPI -D TARGET_LINUX_ARMELv7  
 CXXFLAGS += -frename-registers -fno-strict-aliasing -fsingle-precision-constant 
 CXXFLAGS += -ffast-math -ftree-vectorize -fprefetch-loop-arrays 
 #-std=c++0x
