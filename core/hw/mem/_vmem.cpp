@@ -548,7 +548,7 @@ error:
 	{
 #ifndef _ANDROID
 		fd = shm_open("/dcnzorz_mem", O_CREAT | O_EXCL | O_RDWR,S_IREAD | S_IWRITE);
-		shm_unlink("/dcnzorz_mem");
+		//shm_unlink("/dcnzorz_mem");
 		if (fd==-1)
 		{
 			fd = open("dcnzorz_mem",O_CREAT|O_RDWR|O_TRUNC,S_IRWXU|S_IRWXG|S_IRWXO);
